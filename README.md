@@ -26,6 +26,5 @@ Run service in command line. Navigate to *target* directory.
  - [ ] Will be add new boilerplate design for other softwares. (e.g : angular)
  
 ### License
-----
 
 Apache License 2.0
