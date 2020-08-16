@@ -1,0 +1,11 @@
+version: '3.1'
+
+services:
+  db:
+    container_name: db_postgres
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: example
