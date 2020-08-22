@@ -23,8 +23,10 @@ Run service in command line. Navigate to *target* directory.
 
 ### Todos
 
- - [ ] Will be add new boilerplate design for other softwares. (e.g : angular)
+ - [x] Will be add new boilerplate design for other softwares. -> [For Angular]
  
 ### License
 
 Apache License 2.0
+
+   [For Angular]: <https://github.com/Genc/angular-boilerplate>
