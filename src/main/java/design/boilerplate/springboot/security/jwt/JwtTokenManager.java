@@ -1,15 +1,15 @@
 package design.boilerplate.springboot.security.jwt;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import design.boilerplate.springboot.model.User;
 import design.boilerplate.springboot.model.UserRole;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
-
-import static design.boilerplate.springboot.security.utils.SecurityConstants.*;
 
 /**
  * Created on Ağustos, 2020
@@ -17,33 +17,32 @@ import static design.boilerplate.springboot.security.utils.SecurityConstants.*;
  * @author Faruk
  */
 @Component
+@RequiredArgsConstructor
 public class JwtTokenManager {
 
-	// FIXME : Customize JWT token management for your application
+	private final JwtProperties jwtProperties;
 
 	public String generateToken(User user) {
 
 		final String username = user.getUsername();
 		final UserRole userRole = user.getUserRole();
 
-		final Claims claims = Jwts.claims().setSubject(username);
-		claims.put("role", userRole.name());
-
-		final long currentTimeMillis = System.currentTimeMillis();
-
-		return Jwts.builder()
-				.setClaims(claims)
-				.setIssuer(ISSUER)
-				.setIssuedAt(new Date(currentTimeMillis))
-				.setExpiration(new Date(currentTimeMillis + EXPIRATION_TIME))
-				.signWith(SignatureAlgorithm.HS256, SECRET_KEY)
-				.compact();
+		//@formatter:off
+		return JWT.create()
+				.withSubject(username)
+				.withIssuer(jwtProperties.getIssuer())
+				.withClaim("role", userRole.name())
+				.withIssuedAt(new Date())
+				.withExpiresAt(new Date(System.currentTimeMillis() + jwtProperties.getExpirationMinute() * 60 * 1000))
+				.sign(Algorithm.HMAC256(jwtProperties.getSecretKey().getBytes()));
+		//@formatter:on
 	}
 
 	public String getUsernameFromToken(String token) {
 
-		final Claims claims = getAllClaimsFromToken(token);
-		return claims.getSubject();
+		final DecodedJWT decodedJWT = getDecodedJWT(token);
+
+		return decodedJWT.getSubject();
 	}
 
 	public boolean validateToken(String token, String authenticatedUsername) {
@@ -64,12 +63,16 @@ public class JwtTokenManager {
 
 	private Date getExpirationDateFromToken(String token) {
 
-		final Claims claims = getAllClaimsFromToken(token);
-		return claims.getExpiration();
+		final DecodedJWT decodedJWT = getDecodedJWT(token);
+
+		return decodedJWT.getExpiresAt();
 	}
 
-	private Claims getAllClaimsFromToken(String token) {
-		return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
+	private DecodedJWT getDecodedJWT(String token) {
+
+		final JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(jwtProperties.getSecretKey().getBytes())).build();
+
+		return jwtVerifier.verify(token);
 	}
 
 }

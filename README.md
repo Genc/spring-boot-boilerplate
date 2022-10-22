@@ -2,7 +2,7 @@
  *Spring Boot Boilerplate* is a **starter kit**. This project is a very simple and useful.
  
 ## Technologies 
-- Spring Boot (v2.3.3)
+- Spring Boot (v2.7.4)
 - Spring Data JPA
 - Spring Validation
 - Spring Security + JWT Token
@@ -21,9 +21,9 @@ Run service in command line. Navigate to *target* directory.
 
 ``` java -jar spring-boot-boilerplate.jar ```
 
-### Todos
+### Others
 
- - [ ] Will be add new boilerplate design for other softwares. (e.g : angular)
+ - [For Angular]
  
 ### License
 

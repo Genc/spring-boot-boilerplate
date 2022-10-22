@@ -1,95 +1,84 @@
 package design.boilerplate.springboot.configuration;
 
-import org.springframework.beans.factory.annotation.Value;
+import io.swagger.v3.oas.models.Components;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.info.License;
+import io.swagger.v3.oas.models.security.SecurityRequirement;
+import io.swagger.v3.oas.models.security.SecurityScheme;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.ParameterBuilder;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.schema.ModelRef;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.Contact;
-import springfox.documentation.service.Parameter;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import java.util.Collections;
-import java.util.List;
-
-import static design.boilerplate.springboot.utils.ProjectConstants.PROJECT_BASE_PACKAGE;
+import static io.swagger.v3.oas.models.security.SecurityScheme.Type.HTTP;
 
 /**
  * Created on Ağustos, 2020
  *
  * @author Faruk
  */
+@Getter
+@Setter
 @Configuration
-@EnableSwagger2
-@PropertySource(value = "classpath:swagger-information.properties")
+@ConfigurationProperties(prefix = "swagger")
 public class SwaggerConfiguration {
 
-	@Value("${swagger.app-info.name}")
 	private String appName;
 
-	@Value("${swagger.app-info.description}")
 	private String appDescription;
 
-	@Value("${swagger.app-info.version}")
 	private String appVersion;
 
-	@Value("${swagger.app-info.license}")
-	private String licence;
+	private String appLicense;
 
-	@Value("${swagger.app-info.license-url}")
-	private String licenceUrl;
+	private String appLicenseUrl;
 
-	@Value("${swagger.contact.name}")
 	private String contactName;
 
-	@Value("${swagger.contact.url}")
 	private String contactUrl;
 
-	@Value("${swagger.contact.email}")
-	private String contactEmail;
+	private String contactMail;
 
 	@Bean
-	public Docket api() {
+	public OpenAPI openAPI() {
 
-		return new Docket(DocumentationType.SWAGGER_2)
-				.globalOperationParameters(getHeaderParams())
-				.select()
-				.apis(RequestHandlerSelectors.basePackage(PROJECT_BASE_PACKAGE))
-				.paths(PathSelectors.regex("/.*"))
-				.build()
-				.apiInfo(getApiInformation());
+		final Info apiInformation = getApiInformation();
+		final Components components = new Components();
+
+		final String schemeName = "bearerAuth";
+		components.addSecuritySchemes(schemeName, new SecurityScheme().name(schemeName).type(HTTP).scheme("bearer").bearerFormat("JWT"));
+
+		final OpenAPI openAPI = new OpenAPI();
+		openAPI.setInfo(apiInformation);
+		openAPI.setComponents(components);
+		openAPI.addSecurityItem(new SecurityRequirement().addList(schemeName));
+
+		return openAPI;
 	}
 
-	private ApiInfo getApiInformation() {
+	private Info getApiInformation() {
 
-		final Contact contact = new Contact(contactName, contactUrl, contactEmail);
+		final License license = new License();
+		license.setName(appLicense);
+		license.setUrl(appLicenseUrl);
 
-		return new ApiInfoBuilder()
-				.title(appName)
-				.version(appVersion)
-				.description(appDescription)
-				.license(licence).licenseUrl(licenceUrl)
-				.contact(contact)
-				.build();
-	}
+		final Contact contact = new Contact();
+		contact.setName(contactName);
+		contact.setUrl(contactUrl);
+		contact.setEmail(contactMail);
 
-	private List<Parameter> getHeaderParams(){
 
-		final Parameter parameter = new ParameterBuilder()
-				.required(false)
-				.name("Authorization")
-				.parameterType("header")
-				.modelRef(new ModelRef("string"))
-				.build();
+		final Info info = new Info();
+		info.setTitle(appName);
+		info.setVersion(appVersion);
+		info.setDescription(appDescription);
+		info.setLicense(license);
+		info.setContact(contact);
 
-		return Collections.singletonList(parameter);
+		return info;
 	}
 
 }
