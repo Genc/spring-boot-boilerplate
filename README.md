@@ -28,3 +28,5 @@ Run service in command line. Navigate to *target* directory.
 ### License
 
 Apache License 2.0
+
+   [For Angular]: <https://github.com/Genc/angular-boilerplate>
