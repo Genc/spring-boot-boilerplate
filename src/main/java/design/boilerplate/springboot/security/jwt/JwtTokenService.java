@@ -42,7 +42,7 @@ public class JwtTokenService {
 		final User user = UserMapper.INSTANCE.convertToUser(authenticatedUserDto);
 		final String token = jwtTokenManager.generateToken(user);
 
-		log.info(" {} has successfully logged in!", user.getUsername());
+		log.info("{} has successfully logged in!", user.getUsername());
 
 		return new LoginResponse(token);
 	}
