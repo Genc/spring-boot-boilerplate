@@ -29,7 +29,7 @@ pipeline {
         }
         stage ('Deploy-dockercompose') {
 
-            stepd {
+            steps{
 
                 sh 'scp -i "jenkins-jeni.pem" docker-compose.yml ec2-user@ec2-13-212-160-69.ap-southeast-1.compute.amazonaws.com:~'
                 sh 'ssh -i "jenkins-jeni.pem" ec2-user@ec2-13-212-160-69.ap-southeast-1.compute.amazonaws.com cd ~; sudo docker-compose up -d'
