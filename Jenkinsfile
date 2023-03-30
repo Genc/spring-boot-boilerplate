@@ -28,7 +28,7 @@ pipeline {
 
                     sh 'aws ecr get-login-password --region ap-southeast-1 | sudo docker login --username AWS --password-stdin 314503617348.dkr.ecr.ap-southeast-1.amazonaws.com'
                     sh 'sudo docker tag springbootjava:latest 314503617348.dkr.ecr.ap-southeast-1.amazonaws.com/springbootjava:latest'
-                    sh 'docker push 314503617348.dkr.ecr.ap-southeast-1.amazonaws.com/springbootjava:latest'
+                    sh 'sudo docker push 314503617348.dkr.ecr.ap-southeast-1.amazonaws.com/springbootjava:latest'
                 }
             }
         }
