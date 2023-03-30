@@ -1,11 +1,13 @@
-version: '3.8'
+version: '3'
 
 services:
-  db:
-    container_name: db_postgres
-    image: postgres
-    restart: always
+  web:
+    image: 314503617348.dkr.ecr.ap-southeast-1.amazonaws.com/springbootjava
     ports:
-      - "5432:5432"
+      - "8083:8080"
+    depends_on:
+      - db
+  db:
+    image: postgres
     environment:
       POSTGRES_PASSWORD: example
