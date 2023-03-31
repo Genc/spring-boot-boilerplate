@@ -9,9 +9,9 @@
         <version>2.7.10</version>
     </parent>
 
-    <groupId>design.boilerplate</groupId>
-    <artifactId>spring-boot</artifactId>
-    <version>2.1.0</version>
+    <groupId>com.farukgenc</groupId>
+    <artifactId>springboot-boilerplate</artifactId>
+    <version>2.2.0</version>
 
     <name>spring-boot-boilerplate</name>
     <description>
@@ -30,9 +30,10 @@
     <properties>
         <java.version>11</java.version>
         <jwt.version>4.3.0</jwt.version>
-        <mapstruct.version>1.5.3.Final</mapstruct.version>
         <apache-commons.version>3.12.0</apache-commons.version>
         <openapi-swagger.version>1.6.15</openapi-swagger.version>
+        <mapstruct.version>1.5.3.Final</mapstruct.version>
+        <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
     </properties>
 
     <dependencies>
@@ -93,6 +94,13 @@
         </dependency>
 
         <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok-mapstruct-binding</artifactId>
+            <version>${lombok-mapstruct-binding.version}</version>
+        </dependency>
+
+
+        <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${apache-commons.version}</version>
@@ -123,10 +131,12 @@
         <finalName>spring-boot-boilerplate</finalName>
 
         <plugins>
+
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
         </plugins>
 
     </build>

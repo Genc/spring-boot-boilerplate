@@ -19,7 +19,7 @@ spring:
 springdoc:
   show-actuator: true
   paths-to-match: /**
-  packages-to-scan: design.boilerplate.springboot
+  packages-to-scan: com.farukgenc.boilerplate.springboot
 
 management:
   endpoint:
@@ -33,7 +33,7 @@ management:
 logging:
   level:
     org.springframework: INFO
-    design.boilerplate.springboot: INFO
+    com.farukgenc.boilerplate.springboot: INFO
 
 ## FIXME : Customize JWT token and Swagger information for your application
 
