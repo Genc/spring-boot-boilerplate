@@ -1,11 +1,26 @@
 version: '3.8'
 
 services:
+
   db:
-    container_name: db_postgres
+    container_name: db
     image: postgres
     restart: always
     ports:
       - "5432:5432"
     environment:
       POSTGRES_PASSWORD: example
+
+  app:
+    container_name: app
+    build:
+      context: .
+    ports:
+      - "8080:8080"
+    environment:
+      - "POSTGRES_DB_SERVER_ADDRESS=db"
+      - "POSTGRES_DB_SERVER_PORT=5432"
+      - "POSTGRES_USER=postgres"
+      - "POSTGRES_PASSWORD=example"
+    depends_on:
+      - db
