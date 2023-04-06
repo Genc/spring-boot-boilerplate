@@ -13,7 +13,8 @@ services:
 
   app:
     container_name: app
-    image: omerfarukgenc34/spring-boot-boilerplate:2.2.0
+    build:
+      context: .
     ports:
       - "8080:8080"
     environment:
