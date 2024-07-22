@@ -3,7 +3,7 @@ name: Build Maven Package And Publish Docker Image
 on:
   push:
     branches:
-      - develop
+      - master
 
 jobs:
   build:
