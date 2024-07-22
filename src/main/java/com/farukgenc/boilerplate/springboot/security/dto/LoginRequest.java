@@ -1,10 +1,10 @@
 package com.farukgenc.boilerplate.springboot.security.dto;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.NotEmpty;
 
 /**
  * Created on Ağustos, 2020

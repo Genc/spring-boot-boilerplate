@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
 
   db:
@@ -10,11 +8,15 @@ services:
       - "5432:5432"
     environment:
       POSTGRES_PASSWORD: example
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   app:
     container_name: app
-    build:
-      context: .
+    build: .
     ports:
       - "8080:8080"
     environment:
@@ -22,5 +24,12 @@ services:
       - "POSTGRES_DB_SERVER_PORT=5432"
       - "POSTGRES_USER=postgres"
       - "POSTGRES_PASSWORD=example"
+    healthcheck:
+      test: "curl --fail --silent localhost:8080/actuator/health/readiness | grep UP || exit 1"
+      interval: 2s
+      timeout: 3s
+      retries: 5
+      start_period: 2s
     depends_on:
-      - db
+      db:
+        condition: service_healthy
