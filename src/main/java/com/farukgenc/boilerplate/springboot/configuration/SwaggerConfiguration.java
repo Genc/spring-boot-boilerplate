@@ -9,6 +9,7 @@ import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 import lombok.Getter;
 import lombok.Setter;
+import org.springdoc.core.models.GroupedOpenApi;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -49,7 +50,7 @@ public class SwaggerConfiguration {
 		final Components components = new Components();
 
 		final String schemeName = "bearerAuth";
-		components.addSecuritySchemes(schemeName, new SecurityScheme().name(schemeName).type(HTTP).scheme("bearer").bearerFormat("JWT"));
+		components.addSecuritySchemes(schemeName, new SecurityScheme().name(schemeName).type(HTTP).scheme("Bearer").bearerFormat("JWT"));
 
 		final OpenAPI openAPI = new OpenAPI();
 		openAPI.setInfo(apiInformation);
@@ -70,7 +71,6 @@ public class SwaggerConfiguration {
 		contact.setUrl(contactUrl);
 		contact.setEmail(contactMail);
 
-
 		final Info info = new Info();
 		info.setTitle(appName);
 		info.setVersion(appVersion);
@@ -79,6 +79,16 @@ public class SwaggerConfiguration {
 		info.setContact(contact);
 
 		return info;
+	}
+
+	@Bean
+	GroupedOpenApi managementApi() {
+		return GroupedOpenApi.builder().pathsToMatch("/actuator/**").group("Management Api").build();
+	}
+
+	@Bean
+	GroupedOpenApi defaultApi() {
+		return GroupedOpenApi.builder().pathsToExclude("/actuator/**").group("Default Api").build();
 	}
 
 }
