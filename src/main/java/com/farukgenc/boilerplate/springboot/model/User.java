@@ -1,8 +1,8 @@
 package com.farukgenc.boilerplate.springboot.model;
 
+import jakarta.persistence.*;
 import lombok.*;
 
-import javax.persistence.*;
 
 /**
  * Created on Ağustos, 2020
