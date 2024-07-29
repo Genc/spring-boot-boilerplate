@@ -45,4 +45,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: omerfarukgenc34/spring-boot-boilerplate:${{steps.project.outputs.version}}
+          tags: |
+            omerfarukgenc34/spring-boot-boilerplate:${{steps.project.outputs.version}}
+            omerfarukgenc34/spring-boot-boilerplate:latest
