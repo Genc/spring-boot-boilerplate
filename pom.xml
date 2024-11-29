@@ -6,17 +6,17 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.3.1</version>
+        <version>3.4.0</version>
     </parent>
 
     <groupId>com.farukgenc</groupId>
     <artifactId>springboot-boilerplate</artifactId>
-    <version>3.3.1</version>
+    <version>3.4.0</version>
 
     <name>spring-boot-boilerplate</name>
     <description>
         Spring Boot Boilerplate is a starter kit.
-        This project includes : Spring Boot(3.3.1), Spring Data JPA, Spring Validation, Spring Security + JWT Token, PostgreSQL, Mapstruct, Lombok, Swagger (Open API)
+        This project includes : Spring Boot(3.4.0), Spring Data JPA, Spring Validation, Spring Security + JWT Token, PostgreSQL, Mapstruct, Lombok, Swagger (Open API)
     </description>
 
     <developers>
@@ -32,9 +32,9 @@
         <java.version>17</java.version>
         <jwt.version>4.4.0</jwt.version>
 
-        <openapi-swagger.version>2.6.0</openapi-swagger.version>
+        <openapi-swagger.version>2.7.0</openapi-swagger.version>
 
-        <mapstruct.version>1.5.5.Final</mapstruct.version>
+        <mapstruct.version>1.6.3</mapstruct.version>
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
 
     </properties>
