@@ -19,6 +19,7 @@ services:
     build: .
     ports:
       - "8080:8080"
+    platform: linux/amd64
     environment:
       - "POSTGRES_DB_SERVER_ADDRESS=db"
       - "POSTGRES_DB_SERVER_PORT=5432"
