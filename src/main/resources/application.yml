@@ -43,7 +43,7 @@ jwt:
   expirationMinute: 10
 
 swagger:
-  contact-name: Faruk Genc
+  contact-name: HungPG Genc
   contact-mail: omer@farukgenc.com
   contact-url: https://farukgenc.com
   app-name: Spring Boot Boilerplate Project
