@@ -54,11 +54,11 @@ public class Organization extends BaseEntity {
 
     private String city;
 
-    // TODO: CHECK id
-    private String stateProvinceId;
+    // TODO: SHOULD CHANGE TO ID
+    private String stateProvince;
 
     private String zipPostalCode;
 
-    // TODO: CHECK id
-    private String countryId;
+    // TODO: SHOULD CHANGE TO ID
+    private String country;
 }

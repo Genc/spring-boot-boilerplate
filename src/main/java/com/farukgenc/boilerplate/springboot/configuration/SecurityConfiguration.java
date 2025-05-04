@@ -41,8 +41,9 @@ public class SecurityConfiguration {
 				.csrf(CsrfConfigurer::disable)
 				.cors(CorsConfigurer::disable)
 				.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-				.authorizeHttpRequests(request -> request.requestMatchers("/register",
+				.authorizeHttpRequests(request -> request.requestMatchers("/register/*",
 																		  "/register/organization",
+																			"/register/opportunity",
 																	      "/login",
 																	      "/v3/api-docs/**",
 																          "/swagger-ui/**",

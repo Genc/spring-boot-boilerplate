@@ -40,12 +40,12 @@ public class RegistrationOrganizationRequest {
     private String city;
 
     @NotEmpty(message = "not empty")
-    private String stateProvinceId;
+    private String stateProvince;
 
     @NotEmpty(message = "not empty")
     private String zipPostalCode;
 
     @NotEmpty(message = "not empty")
-    private String countryId;
+    private String country;
 
 }
