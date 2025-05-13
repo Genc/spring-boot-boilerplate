@@ -4,6 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.hiringglobal.mobile.model.Role;
 import com.hiringglobal.mobile.model.User;
 import com.hiringglobal.mobile.model.UserRole;
 
@@ -11,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Created on March, 2025
@@ -26,13 +28,13 @@ public class JwtTokenManager {
 	public String generateToken(User user) {
 
 		final String username = user.getUsername();
-		final UserRole userRole = user.getUserRole();
+		final Set<Role> userRole = user.getRoles();
 
 		//@formatter:off
 		return JWT.create()
 				.withSubject(username)
 				.withIssuer(jwtProperties.getIssuer())
-				.withClaim("role", userRole.name())
+				.withClaim("role", userRole)
 				.withIssuedAt(new Date())
 				.withExpiresAt(new Date(System.currentTimeMillis() + jwtProperties.getExpirationMinute() * 60 * 1000))
 				.sign(Algorithm.HMAC256(jwtProperties.getSecretKey().getBytes()));
