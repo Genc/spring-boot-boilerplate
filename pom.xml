@@ -6,17 +6,18 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.5</version>
+        <version>3.5.6</version>
     </parent>
 
     <groupId>com.farukgenc</groupId>
     <artifactId>springboot-boilerplate</artifactId>
-    <version>3.5.5</version>
+    <version>3.5.6</version>
 
     <name>spring-boot-boilerplate</name>
     <description>
         Spring Boot Boilerplate is a starter kit.
-        This project includes : Spring Boot(3.5.5), Spring Data JPA, Spring Validation, Spring Security + JWT Token, PostgreSQL, Mapstruct, Lombok, Swagger (Open API)
+        This project includes : Spring Boot(3.5.6), Spring Data JPA, Spring Validation, Spring Security + JWT Token, PostgreSQL, Mapstruct, Lombok,
+        Swagger (Open API)
     </description>
 
     <developers>
@@ -30,11 +31,11 @@
     <properties>
 
         <java.version>21</java.version>
+
         <jwt.version>4.5.0</jwt.version>
-
-        <openapi-swagger.version>2.8.12</openapi-swagger.version>
-
         <mapstruct.version>1.6.3</mapstruct.version>
+        <commons-lang3.version>3.18.0</commons-lang3.version>
+        <openapi-swagger.version>2.8.13</openapi-swagger.version>
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
 
     </properties>
@@ -103,9 +104,21 @@
         </dependency>
 
         <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
             <version>${openapi-swagger.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.commons</groupId>
+                    <artifactId>commons-lang3</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
