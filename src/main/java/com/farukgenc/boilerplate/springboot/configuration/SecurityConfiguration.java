@@ -28,12 +28,12 @@ public class SecurityConfiguration {
 	private final JwtAuthenticationEntryPoint unauthorizedHandler;
 
 	@Bean
-	public AuthenticationManager authenticationManager(final AuthenticationConfiguration authenticationConfiguration) throws Exception {
+	public AuthenticationManager authenticationManager(final AuthenticationConfiguration authenticationConfiguration) {
 		return authenticationConfiguration.getAuthenticationManager();
 	}
 
 	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+	public SecurityFilterChain securityFilterChain(HttpSecurity http) {
 
 		//@formatter:off
 
@@ -41,7 +41,8 @@ public class SecurityConfiguration {
 				.csrf(CsrfConfigurer::disable)
 				.cors(CorsConfigurer::disable)
 				.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-				.authorizeHttpRequests(request -> request.requestMatchers("/register",
+				.authorizeHttpRequests(request -> request.requestMatchers(
+																		  "/register",
 																	      "/login",
 																	      "/v3/api-docs/**",
 																          "/swagger-ui/**",
