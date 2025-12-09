@@ -1,4 +1,4 @@
-FROM amazoncorretto:21.0.4-alpine3.18
+FROM eclipse-temurin:21-jdk-jammy
 WORKDIR /app
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} spring-boot-boilerplate.jar
