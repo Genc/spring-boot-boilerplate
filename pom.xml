@@ -6,17 +6,16 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>4.0.0</version>
+        <version>4.0.1</version>
     </parent>
 
     <groupId>com.farukgenc</groupId>
     <artifactId>springboot-boilerplate</artifactId>
-    <version>4.0.0</version>
 
     <name>spring-boot-boilerplate</name>
     <description>
         Spring Boot Boilerplate is a starter kit.
-        This project includes : Spring Boot(4.0.0), Spring Data JPA, Spring Validation, Spring Security + JWT Token, PostgreSQL, Mapstruct, Lombok,
+        This project includes : Spring Boot(4.0.1), Spring Data JPA, Spring Validation, Spring Security + JWT Token, PostgreSQL, Mapstruct, Lombok,
         Swagger (Open API)
     </description>
 
