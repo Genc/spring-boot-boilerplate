@@ -23,6 +23,12 @@ springdoc:
   swagger-ui:
     enabled: true
 
+info:
+  app:
+    name: ${swagger.app-name}
+    description: ${swagger.app-description}
+    version: ${swagger.app-version}
+
 management:
   endpoint:
     health:
@@ -51,7 +57,7 @@ swagger:
   contact-mail: omer@farukgenc.com
   contact-url: https://farukgenc.com
   app-name: Spring Boot Boilerplate Project
-  app-description: "Spring Boot Boilerplate is a starter kit. This project includes : Spring Boot(4.0.3), Spring Data JPA, Spring Validation, Spring Security + JWT Token, PostgreSQL, Mapstruct, Lombok, Swagger (Open API)"
-  app-version: 4.0.3
+  app-description: "Spring Boot Boilerplate is a starter kit. This project includes : Spring Boot(4.0.4), Spring Data JPA, Spring Validation, Spring Security + JWT Token, PostgreSQL, Mapstruct, Lombok, Swagger (Open API)"
+  app-version: 4.0.4
   app-license-url: https://www.apache.org/licenses/LICENSE-2.0.html
   app-license: Apache 2.0
