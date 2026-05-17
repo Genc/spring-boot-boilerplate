@@ -45,10 +45,15 @@ logging:
     org.springframework: INFO
     com.farukgenc.boilerplate.springboot: INFO
 
-## FIXME : Customize JWT token and Swagger information for your application
+## JWT Configuration
+## Generate a strong secret key (at least 256 bits):
+##   openssl rand -base64 32
+##   or use: https://randomkeygen.com/
+## Set via environment variable: JWT_SECRETKEY=<your-generated-secret>
+## Or replace the empty value below (NOT recommended — prefer env vars)
 
 jwt:
-  secretKey: secret
+  secretKey:
   issuer: www.farukgenc.com
   expirationMinute: 10
 
