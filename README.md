@@ -3,7 +3,7 @@
  
 ## Technologies 
 
-- Spring Boot (v4.1.1)
+- Spring Boot (v4.2.0-M1)
 - Spring Data JPA
 - Spring Validation
 - Spring Security + JWT Token
