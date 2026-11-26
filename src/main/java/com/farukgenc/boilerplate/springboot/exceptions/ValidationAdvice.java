@@ -29,7 +29,8 @@ public class ValidationAdvice {
 
 		final ValidationErrorResponse validationErrorResponse = new ValidationErrorResponse(HttpStatus.BAD_REQUEST, LocalDateTime.now(), errorList);
 
-		log.warn("Validation errors : {} , Parameters : {}", errorList, exception.getBindingResult().getTarget());
+		final List<String> invalidFields = fieldErrors.stream().map(FieldError::getField).distinct().toList();
+		log.warn("Validation errors : {} , Invalid fields : {}", errorList, invalidFields);
 
 		return ResponseEntity.status(validationErrorResponse.getStatus()).body(validationErrorResponse);
 	}

@@ -28,6 +28,7 @@ public class RegistrationRequest {
 	@NotEmpty(message = "{registration_username_not_empty}")
 	private String username;
 
+	@ToString.Exclude
 	@NotEmpty(message = "{registration_password_not_empty}")
 	private String password;
 
